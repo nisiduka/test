@@ -1,3 +1,4 @@
+//パッケージを入れます
 package controller;
 
 import java.io.IOException;
@@ -10,9 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-import dao.*;
-import dto.*;
+import dto.Customer;
+import dto.Order;
+import dto.Price;
+import dto.Stock;
 
 
 /**
@@ -21,7 +23,7 @@ import dto.*;
 @WebServlet("/Buy1Servlet")
 public class Buy1Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -48,13 +50,13 @@ public class Buy1Servlet extends HttpServlet {
 		response.setContentType("text/html");
 
 		HttpSession session=request.getSession();
-		
+
 		Customer customer =(Customer)session.getAttribute("cusdto");
-	             
+
 	    if(customer==null) {
 	    	 response.getWriter().println("<script>alert('セッションタイム切れました、再ログインしてください');window.location.href='Toppage1.html'</script>");
 	    }else {
-			    
+
 			    Order orderdto=new Order();
 			    Stock stockdto=(Stock)request.getAttribute("stockdto");
 			    Price pricedto=(Price)request.getAttribute("pricedto");
